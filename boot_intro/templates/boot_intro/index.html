@@ -1,0 +1,213 @@
+{% extends "layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/boot_intro/custom.css' %}">
+{% endblock %}
+
+{% block app_content %}
+
+<br>
+<div class="container mt-5 col-lg-12">
+  <ol class="breadcrumb">
+    <li class="active">
+      ▶︎ 부트스트랩4(프론트) / 장고2(백엔드)로 구현한 자기소개 사이트입니다.
+    </li>
+  </ol>
+</div>
+
+{% block main %}
+
+    <div id="home">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="border-bottom: #43A047 3px solid;">
+            <div class="container">
+                <a href="./index.html" class="navbar-brand">
+                    안병욱
+                </a>
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navCollapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="#home" class="nav-link active">메인</a></li>
+                        <li class="nav-item"><a href="#career" class="nav-link">경력</a></li>
+                        <li class="nav-item"><a href="#portfolio" class="nav-link">포트폴리오</a></li>
+                        <li class="nav-item"><a href="#contact" class="nav-link">연락처</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="container mt-5">
+            <div class="text-center">
+                <img src="{% static 'img/boot_intro/profile.jpg' %}" height="20" alt="" class="img-fluid mb-3 rounded-circle mt-5">
+                <h2>안병욱</h2>
+                <img src="{% static 'img/boot_intro/box.svg' %}" alt="" class="img-fluid mr-1">프로그래머
+                <img src="{% static 'img/boot_intro/anchor.svg' %}" alt="" class="img-fluid mr-1">교육자
+                <img src="{% static 'img/boot_intro/book.svg' %}" alt="" id="career" class="img-fluid mr-1">작가
+            </div>
+        </section>
+
+        <section class="bg-white text-dark mt-5 mb-3 pt-5 pb-4">
+            <div class="text-center">
+                <div class="container text-left mb-5" style="min-width: 480px;">
+                    <h2>수상경력</h2>
+                    <ul>
+                        <li>2017 인재 선정</li>
+                        <li>2017 최우수상</li>
+                        <li>2017 경진대회 대상</li>
+                        <li>2017 최우수상</li>
+                    </ul>
+                </div>
+                <div class="container text-left" style="min-width: 480px;">
+                    <h2>활동경력</h2>
+                    <ul>
+                        <li>교재집필진</li>
+                        <li>선도학교 연구진</li>
+                        <li>유투브 운영</li>
+                        <li id="portfolio">외주 개발자</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="mb-3 pt-4 pb-5">
+            <div class="text-center">
+                <h2>포트폴리오</h2>
+                <div class="container mt-3" style="min-width: 920px;">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio1.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Dynamic Beat</h4>
+                                <p class="card-text" style="text-align:justify">Dynamic Beat 소개</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio2.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">다락리타임 앱</h4>
+                                <p class="card-text" style="text-align:justify">한국교대 제작 앱</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-deck">
+                        <!-- ?? -->
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio3.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">MIDAS-Cook</h4>
+                                <p class="card-text" style="text-align:justify">웹솔루션 공모전</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio4.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">다락리타임 앱</h4>
+                                <p class="card-text" style="text-align:justify">한국교대 제작 앱</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 class="mt-5">연락처</h2>
+                        <div class="d-flex flex-row"> 
+                            <!-- 그리드가 아니라 flex(단방향) 방식이고, 방향은 행으로 처리한다는 뜻 -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                JSP 기반 웹사이트 개발 문의
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row"> 
+                            <!-- ?? -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                프로그래밍/정보보안 강의 문의
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row"> 
+                            <!-- ?? -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                안드로이드 앱 개발 문의
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row"> 
+                            <!-- ?? -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                IT 교육 유투브 채널/블로그 마케팅 문의
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row"> 
+                            <!-- ?? -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                프로그래밍 교재 저술 활동 관련 문의
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row"> 
+                            <!-- ?? -->
+                            <div class="p-3 align-self-start">
+                                <img src="{% static 'img/boot_intro/check.svg' %}" alt="">
+                            </div>
+                            <div class="p-3 align-self-end" style="text-align:justify">
+                                이메일: byungwook.an@gmail.com
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card text-center card-form mt-4 mb-4">
+                            <div class="card-body">
+                                <h2>간편 문의</h2>
+                                <form action="">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="이름"> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="이메일"> 
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg" placeholder="연락처"> 
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control" style="min-height: 100px;" placeholder="내용을 입력하세요."></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-success">전송하기</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+{% block main_add %}
+{% endblock %}
+
+{% endblock %}
+
+{% endblock %}
+
+

@@ -1,0 +1,166 @@
+{% extends "boot_admin/layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+
+{% block menu_active_top %}
+<div class="collapse navbar-collapse justify-content-between" id="navbar_top">
+    <div class="navbar-nav">
+        <a href="./index.html" class="nav-item nav-link">대시보드</a>
+        <a href="./event.html" class="nav-item nav-link">이벤트</a>
+        <a href="./blog.html" class="nav-item nav-link">블로그</a>
+        <a href="./user.html" class="nav-item nav-link active">회원</a>
+    </div>
+    <div class="navbar-nav mr-sm-2">
+        <!-- 오른쪽 정렬 -->
+        <a href="./userLogin.html" class="nav-item nav-link">로그인</a>
+        <a href="./userLogout.html" class="nav-item nav-link">로그아웃</a>
+        <a href="./userEdit.html" class="nav-item nav-link">관리자 정보 수정</a>
+        <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+    </div>
+</div>
+{% endblock %}
+
+{% block menu_active_drop %}
+<div class="dropdown-menu">
+    <a href="./index.html" class="dropdown-item">대시보드</a>
+    <a href="./event.html" class="dropdown-item">이벤트 관리</a>
+    <a href="./blog.html" class="dropdown-item">블로그관리</a>
+    <a href="./user.html" class="dropdown-item active">회원관리</a>
+</div>
+{% endblock%}
+
+{% block menu_active_left %}
+<div class="list-group">
+    <a href="./index.html" class="list-group-item">대시보드
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./event.html" class="list-group-item">이벤트관리
+        <span class="badge badge-secondary">12</span>
+    </a>
+    <a href="./blog.html" class="list-group-item">블로그관리
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./user.html" class="list-group-item active">회원관리
+        {% comment %} <span class="badge badge-secondary">12</span> {% endcomment %}
+    </a>
+</div>
+{% endblock %}
+
+
+{% block message %}
+
+<h4>
+    <img src="{% static "img/boot_admin/userSmall.svg" %}" alt="">
+    <span>
+회원정보<small>를 관리합니다.</small>
+    </span>
+</h4>
+
+{% endblock %}
+
+{% block message_detail %}
+
+회원정보를 수정한 이후에 즉시 반영됩니다.
+
+{% endblock %}
+
+
+{% block content %}
+<div class="col-md-9">
+<div class="list-group">
+    <a href="#" class="list-group-item active">신규 회원</a>
+    <div class="list-group-item">
+        <div class="list-group">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="mobile" scope="col" style="width: 100px; text-align: center;"> 번호</th>
+                        <th scope="col" style="text-align: center">아이디</th>
+                        <th class="mobile" scope="col" style="width: 130px; text-align: center;">이름</th>
+                        <th class="mobile" scope="col" style="width: 150px; text-align: center;">가입일자</th>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="text-align:center;">1053</th>
+                        <td>gildong1234</td>
+                        <td class="mobile" style="text-align:center;">홍길동</td>
+                        <td class="mobile" style="text-align:center;">2018-01-08</td>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="text-align:center;">1052</th>
+                        <td>donbing-na</td>
+                        <td class="mobile" style="text-align:center;">나동빈</td>
+                        <td class="mobile" style="text-align:center;">2018-01-07</td>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="text-align:center;">1051</th>
+                        <td>taeil</td>
+                        <td class="mobile" style="text-align:center;">이태일</td>
+                        <td class="mobile" style="text-align:center;">2018-01-05</td>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="text-align:center;">1050</th>
+                        <td>hwp1032</td>
+                        <td class="mobile" style="text-align:center;">박한울</td>
+                        <td class="mobile" style="text-align:center;">2018-01-02</td>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="text-align:center;">1049</th>
+                        <td>ahnbu</td>
+                        <td class="mobile" style="text-align:center;">안병욱</td>
+                        <td class="mobile" style="text-align:center;">2018-01-07</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="list-group mt-3">
+        <a href="#" class="list-group-item active">성별에 따른 회원 나이대 분포</a>
+        <div class="list-group-item">
+            <canvas id="radarChart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock  %}
+
+{% block javascript %}
+<!-- MDB 라이브러리 추가하기 -->
+  <script src="{% static 'js/mdb.min.js'%}"></script>
+  <script>
+  var ctxR = document.getElementById("radarChart").getContext('2d');
+  var myRadarChart = new Chart(ctxR, {
+      type: 'radar',
+      data: {
+          labels: ["10대", "20대", "30대", "40대", "50대", "60대", "기타"],
+          datasets: [
+              {
+                  label: "남성",
+                  fillColor: "rgba(220,220,220,0.2)",
+                  strokeColor: "rgba(220,220,220,1)",
+                  pointColor: "rgba(220,220,220,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(220,220,220,1)",
+                  data: [65, 59, 90, 81, 56, 55, 40]
+              },
+              {
+                  label: "여성",
+                  fillColor: "rgba(151,187,205,0.2)",
+                  strokeColor: "rgba(151,187,205,1)",
+                  pointColor: "rgba(151,187,205,1)",
+                  pointStrokeColor: "#fff",
+                  pointHighlightFill: "#fff",
+                  pointHighlightStroke: "rgba(151,187,205,1)",
+                  data: [28, 48, 40, 19, 35, 27, 35]
+              }
+          ]
+      },
+      options: {
+          responsive: true
+      }
+  });
+  </script>
+
+{% endblock %}

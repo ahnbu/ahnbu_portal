@@ -1,0 +1,185 @@
+{% extends "boot_admin/layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block menu_active_top %}
+<div class="collapse navbar-collapse justify-content-between" id="navbar_top">
+    <div class="navbar-nav">
+        <a href="./index.html" class="nav-item nav-link">대시보드</a>
+        <a href="./event.html" class="nav-item nav-link active">이벤트</a>
+        <a href="./blog.html" class="nav-item nav-link">블로그</a>
+        <a href="./user.html" class="nav-item nav-link">회원</a>
+    </div>
+    <div class="navbar-nav mr-sm-2">
+        <!-- 오른쪽 정렬 -->
+        <a href="./userLogin.html" class="nav-item nav-link">로그인</a>
+        <a href="./userLogout.html" class="nav-item nav-link">로그아웃</a>
+        <a href="./userEdit.html" class="nav-item nav-link">관리자 정보 수정</a>
+        <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+    </div>
+</div>
+{% endblock %}
+
+{% block menu_active_drop %}
+<div class="dropdown-menu">
+    <a href="./index.html" class="dropdown-item">대시보드</a>
+    <a href="./event.html" class="dropdown-item active">이벤트 관리</a>
+    <a href="./blog.html" class="dropdown-item">블로그관리</a>
+    <a href="./user.html" class="dropdown-item">회원관리</a>
+</div>
+{% endblock%}
+
+{% block menu_active_left %}
+<div class="list-group">
+    <a href="./index.html" class="list-group-item">대시보드
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./event.html" class="list-group-item active">이벤트관리
+    </a>
+    <a href="./blog.html" class="list-group-item">블로그관리
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./user.html" class="list-group-item">회원관리
+        <span class="badge badge-secondary">12</span>
+    </a>
+</div>
+{% endblock %}
+
+
+{% block message %}
+
+<h4>
+    <img src="{% static "img/boot_admin/eventSmall.svg" %}" alt="">
+    <span>
+이벤트 정보<small>를 수정합니다.</small>
+    </span>
+</h4>
+
+{% endblock %}
+
+{% block message_detail %}
+
+이벤트 정보를 수정한 이후에 즉시 반영됩니다.
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="col-md-9">
+<div class="list-group">
+    <a href="#" class="list-group-item active">이벤트 목록</a>
+    <div class="list-group-item">
+        <div class="list-group">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th class="mobile" scope="col" style="width: 60px;text-align:center">번호</th>
+                        <th scope="col" style="text-align: center">제목</th>
+                        <th class="mobile" scope="col" style="width: 80px;text-align:center">작성자</th>
+                        <th class="mobile" scope="col" style="width: 120px;text-align:center">날짜</th>
+                    </tr>
+
+                    {% for event in event_list %}
+                    <tr>
+                        <th class="mobile" scope="row" style="width: 60px;text-align:center">{{event.id}}</th>
+                        <td>{{event.title}}</td>
+                        <td class="mobile" style="text-align:center">{{event.user}}</td>
+                        <td class="mobile" style="text-align:center">{{event.deadline|date:"Y/m/d"}}</td>
+                    </tr>
+                    {% endfor %}
+
+                    {% comment %} <tr>
+                        <th class="mobile" scope="row" style="width: 60px;text-align:center">9</th>
+                        <td>신규 상품 출시</td>
+                        <td class="mobile" style="text-align:center">운영자</td>
+                        <td class="mobile" style="text-align:center">2018-01-19</td>
+                    </tr>
+                    <tr>
+                        <th class="mobile" scope="row" style="width: 60px;text-align:center">8</th>
+                        <td>개설 수수료 10% 이벤트</td>
+                        <td class="mobile" style="text-align:center">운영</td>
+                        <td class="mobile" style="text-align:center">2018-01-10</td>
+                    </tr> {% endcomment %}
+                    <tr>
+                        <td colspan="4">
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modal">
+                                이벤트 추가
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="list-group mt-3">
+        <a href="#" class="list-group-item active">이벤트 참여 연령대</a>
+        <div class="list-group-item">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock  %}
+
+{% block main_add %}
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">이벤트 추가</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <div class="form-group">
+            <label for="">제목</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">내용</label>
+            <textarea type="text" class="form-control" style="height:180px"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">해시태그</label>
+            <input type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="">종료날짜</label>
+            <input type="datetime-local" class="form-control" value="2018-01-01T00:00:00">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+            <button type="button" class="btn btn-primary">추가하기</button>
+          </div>
+        </form>
+      </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<!-- MDB 라이브러리 추가하기 -->
+<script src="{% static 'js/mdb.min.js'%}"></script>
+<script>
+  var ctxP = document.getElementById("pieChart").getContext('2d');
+  var myPieChart = new Chart(ctxP, {
+    type: 'pie',
+    data: {
+      labels: ["10대", "20대", "30대", "40대", "50대", "기타"],
+      datasets: [{
+        data: [332, 228, 124, 32, 8, 75],
+        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+</script>
+{% endblock %}

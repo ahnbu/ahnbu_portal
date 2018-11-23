@@ -1,0 +1,49 @@
+{% extends "boot_admin/layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block menu_active_top %}
+<div class="collapse navbar-collapse justify-content-between" id="navbar_top">
+    <div class="navbar-nav">
+        <a href="./index.html" class="nav-item nav-link">대시보드</a>
+        <a href="./event.html" class="nav-item nav-link">이벤트</a>
+        <a href="./blog.html" class="nav-item nav-link">블로그</a>
+        <a href="./user.html" class="nav-item nav-link">회원</a>
+    </div>
+    <div class="navbar-nav mr-sm-2">
+        <!-- 오른쪽 정렬 -->
+        <a href="./userLogin.html" class="nav-item nav-link">로그인</a>
+        <a href="./userLogout.html" class="nav-item nav-link active">로그아웃</a>
+        <a href="./userEdit.html" class="nav-item nav-link">관리자 정보 수정</a>
+        <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+    </div>
+</div>
+{% endblock %}
+
+
+{% block message %}
+
+<h4>
+    <img src="{% static "img/boot_admin/userSmall.svg" %}" alt="">
+    <span>
+로그아웃<small>에 성공했니다.</small>
+    </span>
+</h4>
+
+{% endblock %}
+
+{% block message_detail %}
+
+다시 페이지에 접속하시려면 로그인 페이지로 이동하세요.
+
+{% endblock %}
+
+
+{% block main %}
+  <section id="main">
+    <div class="container">
+        <a href="./userLogin.html" class="btn btn-primary">로그인 페이지로 이동하기</a>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <title>{% block title %} ahnbu's page {% endblock %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  {% comment %}
+  <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}"> {% endcomment %}
+  {% block css %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+  {% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-2 fixed-top">
+    <a href="{% url 'home' %}" class="navbar-brand">
+      Home
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_portal" aria-controls="navbar"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      <!-- 우측 메뉴 아이콘 -->
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbar_portal">
+      <div class="navbar-nav">
+        <a href="../boot_intro/index.html" class="nav-item nav-link">Boot_Intro</a>
+        <a href="../boot_community/index.html" class="nav-item nav-link">Boot_Community</a>
+        <a href="../boot_admin/index.html" class="nav-item nav-link">Boot_Admin</a>
+        <a href="../dsschool/index.html" class="nav-item nav-link">DS_School</a>
+      </div>
+      <div class="navbar-nav mr-sm-2">
+        <!-- 오른쪽 정렬 -->
+        {% comment %} <a href="../userLogin.html" class="nav-item nav-link">로그인</a>
+        <a href="../userLogout.html" class="nav-item nav-link">로그아웃</a> {% endcomment %}
+        <a href="../admin" class="nav-item nav-link">Admin</a>
+        <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+      </div>
+    </div>
+  </nav>
+
+  {% block app_content %}
+  <br>
+        <section class="mb-3 pt-4 pb-5 mt-5">
+            <div class="text-center">
+                <h1>포트폴리오 요약</h1>
+                <div class="container mt-3" style="min-width: 920px;">
+                    <div class="card-deck">
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio1.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">Dynamic Beat</h4>
+                                <p class="card-text" style="text-align:justify">Dynamic Beat 소개</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio2.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">다락리타임 앱</h4>
+                                <p class="card-text" style="text-align:justify">한국교대 제작 앱</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio3.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">MIDAS-Cook</h4>
+                                <p class="card-text" style="text-align:justify">웹솔루션 공모전</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio4.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">다락리타임 앱</h4>
+                                <p class="card-text" style="text-align:justify">한국교대 제작 앱</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card-deck">
+                        <!-- ?? -->
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio3.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">MIDAS-Cook</h4>
+                                <p class="card-text" style="text-align:justify">웹솔루션 공모전</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="{% static 'img/boot_intro/portfolio4.png' %}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h4 class="card-title">다락리타임 앱</h4>
+                                <p class="card-text" style="text-align:justify">한국교대 제작 앱</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+  {% endblock %}
+
+  <footer class="col-lg-12 bg-dark mp-5 text-center" style="color:#ffffff;">
+    Copyright &copy; 2018 안병욱 All Rights Reserved.
+  </footer> 
+  
+
+  <!-- 제이쿼리, 파퍼, 부트스트랩 -->
+  <!-- <script src="./js/jquery-3.3.1.slim.min.js"></script> -->
+  <script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+  <!-- 제이쿼리 slim.min이 아니라 min 버전을 써야지 아래 그래프가 나타남 -->
+  <script src="{% static 'js/popper.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+  {% block javascript %}
+  {% endblock %}
+
+</body>
+
+</html>

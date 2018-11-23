@@ -1,0 +1,58 @@
+{% extends "portal/layout.html" %}
+
+{% load humanize %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+
+{% block content %}
+	<div class="container lotto">
+		<form method="POST" class="post-form">
+			{%csrf_token%}  <!-- 보안이슈로 입력 -->
+			<button type="submit" class="save btn btn-default">할인률체크</button>
+		</form>
+	</div>
+	
+    <div class="container prices">
+        <table border="1" cellspacing="0" class="discount">
+            <!--<caption>DS스쿨 할인율 체크</caption>-->
+            <colgroup>
+                <col width="20%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="category"><span>분류</span></th>
+                    <th class="name">강의명</th>
+                    <th class="discount_price"><span>할인가격(만원)</span></th>
+                    <th class="price"><span>가격(만원)</span></th>
+                    <th class="discount"><span>할인율(%)</span></th>
+                    <th class="summary"><span>내용</span></th>
+                    <th class="update_date"><span>업데이트일</span></th>
+                    <th class="link"><span>링크</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% load mathfilters %}
+                {% for price in prices_list %}
+                    <tr class="price_list">
+                        <td class="category">{{price.category}}</td>
+                        <td class="name">{{price.name}}</td>
+                        <td class="discount_price">{{price.discount_price}}만원</td>
+                        <td class="price">{{price.price}}만원</td>
+                        <td class="discount">{{price.discount}}%</td>
+                        <td class="summary">{{price.summary}}</td>
+                        <td class="update_date">{{price.update_date}}</td>
+                        <td class="link"><a href={{price.link}}>이동</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

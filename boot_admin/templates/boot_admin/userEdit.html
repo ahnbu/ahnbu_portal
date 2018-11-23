@@ -1,0 +1,120 @@
+{% extends "boot_admin/layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+
+{% block menu_active_top %}
+<div class="collapse navbar-collapse justify-content-between" id="navbar_top">
+    <div class="navbar-nav">
+        <a href="./index.html" class="nav-item nav-link">대시보드</a>
+        <a href="./event.html" class="nav-item nav-link">이벤트</a>
+        <a href="./blog.html" class="nav-item nav-link">블로그</a>
+        <a href="./user.html" class="nav-item nav-link">회원</a>
+    </div>
+    <div class="navbar-nav mr-sm-2">
+        <!-- 오른쪽 정렬 -->
+        <a href="./userLogin.html" class="nav-item nav-link">로그인</a>
+        <a href="./userLogout.html" class="nav-item nav-link">로그아웃</a>
+        <a href="./userEdit.html" class="nav-item nav-link active">관리자 정보 수정</a>
+        <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+    </div>
+</div>
+{% endblock %}
+
+{% block menu_active_drop %}
+<div class="dropdown-menu">
+    <a href="./index.html" class="dropdown-item">대시보드</a>
+    <a href="./event.html" class="dropdown-item">이벤트 관리</a>
+    <a href="./blog.html" class="dropdown-item">블로그관리</a>
+    <a href="./user.html" class="dropdown-item">회원관리</a>
+</div>
+{% endblock%}
+
+{% block menu_active_left %}
+<div class="list-group">
+    <a href="./index.html" class="list-group-item">대시보드
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./event.html" class="list-group-item">이벤트관리
+        <span class="badge badge-secondary">12</span>
+    </a>
+    <a href="./blog.html" class="list-group-item">블로그관리
+        <span class="badge badge-secondary">30</span>
+    </a>
+    <a href="./user.html" class="list-group-item">회원관리
+        <span class="badge badge-secondary">12</span>
+        {% comment %} <span class="badge badge-secondary">12</span> {% endcomment %}
+    </a>
+</div>
+{% endblock %}
+
+
+{% block message %}
+
+<h4>
+    <img src="{% static "img/boot_admin/userSmall.svg" %}" alt="">
+    <span>
+관리자 정보<small>를 수정합니다.</small>
+    </span>
+</h4>
+
+{% endblock %}
+
+{% block message_detail %}
+
+관리자 정보를 수정한 이후에 즉시 반영됩니다.
+
+{% endblock %}
+
+
+{% block content %}
+<div class="col-md-9">
+<div class="list-group">
+  <a href="#" class="list-group-item active">관리자 정보 수정</a>
+  <div class="list-group-item">
+    <form action="">
+      <div class="form-group">
+        <label for="">아이디</label>
+        <input type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">비밀번호</label>
+        <input type="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">비밀번호 확인</label>
+        <input type="password" class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="">연락처</label>
+          <input type="text" class="form-control">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="">성별</label>
+          <select name="" id="" class="form-control">
+            <option selected value="">남성</option>
+            <option value="">여성</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">이메일</label>
+        <input type="email" class="form-control">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-2"><label for="inputCity">도</label><input type="text" class="form-control"></div>
+        <div class="form-group col-md-3"><label for="">시/군/읍</label><input type="text" class="form-control"></div>
+        <div class="form-group col-md-7"><label for="inputCity">상세 주소</label><input type="text" class="form-control"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">수정하기</button>
+    </form>
+  </div>
+</div>
+</div>
+{% endblock  %}
+
+{% block javascript %}
+
+{% endblock %}

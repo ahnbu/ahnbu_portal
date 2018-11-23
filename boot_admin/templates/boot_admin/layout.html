@@ -1,0 +1,186 @@
+{% extends "layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/boot_admin/custom.css' %}">
+{% endblock %}
+
+{% block app_content %}
+<br>
+<div class="container mt-5 col-lg-12">
+  <ol class="breadcrumb">
+    <li class="active">
+      ▶︎ 부트스트랩4(프론트) / 장고2(백엔드) / MDB라이브러리(챠트)로 구현한 관리자 사이트입니다.
+    </li>
+  </ol>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <a href="./index.html" class="navbar-brand">
+    관리자 페이지
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_top" aria-controls="navbar"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    <!-- 우측 메뉴 아이콘 -->
+  </button>
+
+  {% block menu_active_top %}
+  <div class="collapse navbar-collapse justify-content-between" id="navbar_top">
+    <div class="navbar-nav">
+      <a href="./index.html" class="nav-item nav-link active">대시보드</a>
+      <a href="./event.html" class="nav-item nav-link">이벤트</a>
+      <a href="./blog.html" class="nav-item nav-link">블로그</a>
+      <a href="./user.html" class="nav-item nav-link">회원</a>
+    </div>
+    <div class="navbar-nav mr-sm-2">
+      <!-- 오른쪽 정렬 -->
+      <a href="./userLogin.html" class="nav-item nav-link">로그인</a>
+      <a href="./userLogout.html" class="nav-item nav-link">로그아웃</a>
+      <a href="./userEdit.html" class="nav-item nav-link">관리자 정보 수정</a>
+      <!-- 보통은 로그인 되기 전에는 로그인만 보이고, 로그인되면 로그아웃, 정보수정이 보이게 하는 것은 서버 측면에서 작업 -->
+    </div>
+  </div>
+  {% endblock %}
+
+</nav>
+<header id="header">
+  <div class="container p-3 bg-dark text-white">
+    <div class="row">
+      <div class="col-sm-9 info">
+        <!-- 9만큼 차지하도록 (75%) -->
+
+        {% block message %}
+
+        <h4>
+          <img src="{% static "img/boot_admin/setting.svg" %}" alt="">
+          <span>
+            대시보드<small> 페이지를 관리하세요.</small>
+          </span>
+        </h4>
+
+        {% endblock %}
+
+      </div>
+      <div class="col-sm-3">
+        <!-- 3만큼 25%만큼 차지하도록 -->
+
+
+        <div class="btn-group float-right">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <!-- 토글인데, 이건 dropdown 방식으로 토글 collapse가 아니라-->
+            관리목록 ▼
+          </button>
+
+        {% block menu_active_drop %}
+          <div class="dropdown-menu">
+            <a href="./index.html" class="dropdown-item active">대시보드</a>
+            <a href="./event.html" class="dropdown-item">이벤트 관리</a>
+            <a href="./blog.html" class="dropdown-item">블로그관리</a>
+            <a href="./user.html" class="dropdown-item">회원관리</a>
+          </div>
+        {% endblock%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <ol class="breadcrumb">
+    <!-- 간단한 메시지를 보일 때 사용함  배경색 회색으로 표시-->
+    <li class="active">
+      {% block message_detail %}
+      대시보드의 모든 작업은 데이터베이스에 기록됩니다.
+      {% endblock %}
+    </li>
+  </ol>
+</div>
+
+{% block main %}
+
+<section id="main">
+  <div class="container">
+    <div class="row">
+      {% block left_menu %}
+      <div class="col-md-3">
+
+        {% block menu_active_left %}
+        <div class="list-group">
+          <a href="./index.html" class="list-group-item active">대시보드</a>
+          <a href="./event.html" class="list-group-item">이벤트관리
+            <span class="badge badge-secondary">12</span>
+          </a>
+          <a href="./blog.html" class="list-group-item">블로그관리
+            <span class="badge badge-secondary">30</span>
+          </a>
+          <a href="./user.html" class="list-group-item">회원관리
+            <span class="badge badge-secondary">12</span>
+          </a>
+        </div>
+        {% endblock %}
+
+        <div class="p-2 my-2">
+          <h5 class="mt-2">CPU 점유율</h5>
+          <div class="progress" style="height: 20px; background-color:#f2f2f2">
+            <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 10%;"
+              aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h5 class="mt-2">메모리 점유율</h5>
+          <div class="progress" style="height: 20px; background-color:#f2f2f2">
+            <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated" role="progressbar" style="width: 50%;"
+              aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h5 class="mt-2">디스크 점유율</h5>
+          <div class="progress" style="height: 20px; background-color:#f2f2f2">
+            <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 75%;"
+              aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <h5 class="mt-2">트래픽</h5>
+          <div class="progress" style="height: 20px; background-color:#f2f2f2">
+            <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" style="width: 100%;"
+              aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        <div class="p-2 my-2">
+          <div class="card text-center pt-2 bg-light">
+            <h5 class="p5-2 pb-2">외부 사이트</h5>
+            <ul class="list-group">
+              <a href="http://www.naver.com">
+                <li class="list-group-item" style="color: black">네이버</li>
+              </a>
+              <a href="http://www.youtube.com">
+                <li class="list-group-item" style="color: black">유튜브</li>
+              </a>
+              <a href="http://www.facebook.com">
+                <li class="list-group-item" style="color: black">페이스북</li>
+              </a>
+              <a href="http://www.instagram.com">
+                <li class="list-group-item" style="color: black">인스타그램</li>
+              </a>
+            </ul>
+            <div class="card-footer text-muted">12 minutes ago</div>
+          </div>
+        </div>
+      </div>
+      {% endblock %}
+
+      {% block content %}
+      <div class="col-md-9">
+        <h1> 메인 콘텐츠 나올 곳 </h1>
+      </div>
+      {% endblock %}
+    </div>
+  </div>
+</section>
+
+{% block main_add %}
+{% endblock %}
+
+{% endblock %}
+
+{% endblock %}

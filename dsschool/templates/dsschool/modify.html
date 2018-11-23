@@ -1,0 +1,16 @@
+{% extends "portal/layout.html" %}
+
+{% load humanize %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="container ">
+        <h1> 할인률: {{views.price_check.discount_rate}} </h1>
+    </div>
+
+{% endblock %}
+
+

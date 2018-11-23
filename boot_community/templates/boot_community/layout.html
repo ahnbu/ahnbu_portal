@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% load humanize %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/boot_community/sidebar.css' %}">
+{% endblock %}
+
+{% block app_content %}
+<br>
+<div class="container mt-5 col-lg-12">
+  <ol class="breadcrumb">
+    <li class="active">
+      ▶︎ 부트스트랩4(프론트) / 장고2(백엔드)로 구현한 커뮤니티 사이트입니다. (구글지도 포함)
+    </li>
+  </ol>
+</div>
+
+<div class="container-fluid">
+  <!-- fluid를 넣지 않으면, 가장자리에 붙지 않는다. -->
+  <div class="row d-flex flex-nowrap wrapper">
+
+  {% comment %} <div class="row d-flex d-md-block flex-nowrap wrapper"> {% endcomment %}
+    <!-- 이 부분에서 d-flex 이후를 모두 제거함 -->
+    <!-- d-flex는 단반향 grid
+          row는 가로로 하겠다.
+          d-md-block은 md이상에서는 block처리하겠다.
+          nowrap은 화면이 줄어도 줄바꿈을 안하겠다. -->
+    <nav class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+      <!--
+                float-left는 왼쪽으로 띄우기, right하면 오른쪽 띄우기 
+                collapse만 있으면 안보인다. 
+                show는 기본값을 보여주기로 시작한다.(반대는 collaped)-->
+
+      <div class="list-group border-0 card text-center text-md-left">
+        <a href="./index.html" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+          <img style="width: 20px;" src="{% static "img/boot_community/home.svg" %}">
+          <span class="d-none d-md-inline ml-1">메인</span>
+          <!-- 기본은 display:none인데, md이상에서는 inline으로 보여줘라.
+                                -->
+        </a>
+        <a href="#usermenu" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar"
+          aria-expanded="false">
+
+          <!-- inline은 텍스트를 감싸는 것
+                      block은 박스를 만드는 것
+                      inline-block을 텍스트를 감싸는 박스를 만드는 것
+                      그래서 block은 높이/너비가 있지만, inline만 나오면 padding과 margin만 설정할 수 있음
+                      inline: only margin-left, margin-right, padding-left, padding-right
+                      inline-block: margin, padding, height, width
+                      https://goo.gl/7ony1p -->
+          <img style="width: 20px;" src="{% static "img/boot_community/user.svg" %}" alt="">
+          <span class="d-none d-md-inline ml-1">회원관리</span>
+        </a>
+        <div class="collapse" id="usermenu">
+          <a href="userJoin.html" class="list-group-item" data-parent="#sidebar">회원가입</a>
+          <a href="userLogin.html" class="list-group-item" data-parent="#sidebar">로그인</a>
+          <a href="userEdit.html" class="list-group-item" data-parent="#sidebar">회원정보수정</a>
+          <a href="userLogout.html" class="list-group-item" data-parent="#sidebar">로그아웃</a>
+        </div>
+
+        <a href="./board.html" class="list-group-item d-inline-block collapsed">
+          <img style="width: 20px;" src="{% static "img/boot_community/board.svg" %}" alt="">
+          <span class="d-none d-md-inline ml-1">자유게시판</span>
+        </a>
+        <a href="./qna.html" class="list-group-item d-inline-block collapsed">
+          <img style="width: 20px;" src="{% static "img/boot_community/message.svg" %}" alt="">
+          <span class="d-none d-md-inline ml-1">Q & A</span>
+        </a>
+        <a href="#search" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar"
+          aria-expanded="false">
+          <img style="width: 20px;" src="{% static "img/boot_community/search.svg" %}" alt="">
+          <span class="d-none d-md-inline ml-1">검색</span>
+        </a>
+        <div class="collapse" id="search">
+          <div class="input-group p-2" style="background-color:#1c1c1c">
+            <input type="text" class="form-control" placeholder="내용을 입력하세요.">
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main" class="col-md-9 float-left col pl-md-5 pt-3 main">
+
+      {% block main %}
+
+      {% block main_add %}
+      {% endblock %}
+
+      {% endblock %}
+
+    </main>
+
+  </div>
+</div> 
+
+{% endblock %}
