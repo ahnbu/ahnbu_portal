@@ -8,6 +8,7 @@
     <form method="POST" class="post-form">
         {%csrf_token%}  <!-- 보안이슈로 입력 -->
         <button type="submit" class="save btn btn-primary">할인률체크</button>
+        <small>&nbsp;{{message}}</small>
     </form>
 
     <br>

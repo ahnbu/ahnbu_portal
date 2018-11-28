@@ -1,0 +1,7 @@
+pip install django
+pip install datetime pandas 
+pip install numpy bs4 requests 
+pip install django-extentions (한꺼번에 X 따로 설치해야 함)
+pip install django-debug-toolbar (debug_toolbar는 django-debug-toolbar로 처리)
+pip install django-mathfilters
+

@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'mathfilters',
-    'django_jinja',
+    # 'django_jinja',
 ]
 
 MIDDLEWARE = [

@@ -20,9 +20,9 @@ from datetime import datetime, date
 def index(request):
     if request.method == "POST":
         df = dsschool()
-        df_sql(df)
+        message = df_sql(df)
         prices_list = Price.objects.all()  # .order_by('-update_date')
-        return render(request, 'dsschool/index.html', {'prices_list': prices_list})
+        return render(request, 'dsschool/index.html', {'prices_list': prices_list, 'message': message})
 #        return redirect('index')
         # "Save" 버튼을 누른 후에 결과 페이지.
         # index는 메인 페이지로 이동. new_lotto는 입력 페이지로 이동
@@ -38,15 +38,20 @@ def df_sql(df):
     import sqlite3
     con = sqlite3.connect("./db.sqlite3")
     # ../db.sqlite3이라고 하니까 계속 업데이트 안되었음 ㅠㅠ 점 하나 빼야 됨
+    result = ""
     if Price.objects.all().count() == 0:  # 기존에 없으면, 바로 추가
         # 아래 dsschool_price에서 dsschool 부분에 앱 이름이 들어가야 함
         df.to_sql('dsschool_price', con, if_exists='append', index=False)
+        # result = {'message': "오늘은 이미 업데이트되었습니다."}
+        result = ""
     else:  # 기존에 있으면, 오늘 꺼가 있으면 업데이트 안함
         price_date = Price.objects.first().update_date
         if price_date.date() < datetime.today().date():
             df.to_sql('dsschool_price', con, if_exists='append', index=False)
+            result = ""
         else:
-            pass
+            result = "오늘은 이미 업데이트되었습니다."
+    return result
 
 
 def dsschool():

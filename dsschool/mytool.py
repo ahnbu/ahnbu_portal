@@ -1,12 +1,13 @@
 
 # 리스트를 테이블로 변환시켜줌 (첫째는 리스트 모음, 둘째는 각 리스트의 명칭)
 
+
 def list_to_table(all_list, col_names):
     import pandas as pd
     import numpy as np
 
     all_list = np.transpose(all_list)
-    df = pd.DataFrame(data = np.array(all_list))
+    df = pd.DataFrame(data=np.array(all_list))
     df.columns = col_names
 #    df.sort_values(by=args, ascending=[False], inplace=True)
 

@@ -10,8 +10,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <!-- Bootstrap CSS -->  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 
+  {% comment %} <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> {% endcomment %}
   {% comment %}
   <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}"> {% endcomment %}
   {% block css %}
@@ -117,6 +119,7 @@
   <!-- 제이쿼리 slim.min이 아니라 min 버전을 써야지 아래 그래프가 나타남 -->
   <script src="{% static 'js/popper.min.js'%}"></script>
   <script src="{% static 'js/bootstrap.min.js'%}"></script>
+  {% comment %} <script src="static/js/bootstrap.min.js"></script> {% endcomment %}
 
   {% block javascript %}
   {% endblock %}

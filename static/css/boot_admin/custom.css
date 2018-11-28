@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/* 앞에 https://를 추가해줘야 함 */
+
+.navbar-brand, h1, h2, h3, h4 {
+  font-family: 'Jeju Gothic';
+}
+/* 큰 글씨들의 정의 */
+
+h5 {
+  font-family: 'Jeju Gothic';
+  font-size: 18px;
+}
+/* h5는 원래보다 조금 더 작게 하도록 */
+
+body {
+  font-family: 'Nanum Gothic';
+}
+#header {
+  color: #ffffff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+#header small {
+  color: #cccccc;
+}
+.info {
+  margin-top: 3px;
+}
+.dropdown-toggle::after {
+    content: none;
+} 
+/* dropdown부분의 마지막 부분의 화살표를 빼고, 대신에 더 큰걸로 넣으려고 한 것임 */
+
+@media (max-width: 990px) {
+  .mobile {
+    display: none;
+  }
+}
+.modal {
+  -webkit-transform: translate(0,-50%);
+   -o-transform: translate(0,-50%);
+   transform: translate(0,-50%);
+   top: 50%;
+   margin: 0 auto;
+   height: 720px;
+}
