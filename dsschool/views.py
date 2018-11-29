@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect, reverse
 
 import requests
 from bs4 import BeautifulSoup
+import beautifulsoup4
 import numpy as np
 import pandas as pd
 from datetime import datetime, date
@@ -59,8 +60,8 @@ def dsschool():
         "https://dsschool.co.kr/marketing/suggestions").text
     data_analytics = requests.get("https://dsschool.co.kr/suggestions").text
 
-    soup_mkt = BeautifulSoup(marketing, 'html.parser')
-    soup_data = BeautifulSoup(data_analytics, 'html.parser')
+    soup_mkt = beautifulsoup4(marketing, 'lxml')
+    soup_data = beautifulsoup4(data_analytics, 'lxml')
 
     # soup_mkt = BeautifulSoup(marketing, 'lxml')
     # soup_data = BeautifulSoup(data_analytics, 'lxml')
