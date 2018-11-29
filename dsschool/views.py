@@ -59,8 +59,11 @@ def dsschool():
         "https://dsschool.co.kr/marketing/suggestions").text
     data_analytics = requests.get("https://dsschool.co.kr/suggestions").text
 
-    soup_mkt = BeautifulSoup(marketing, 'lxml')
-    soup_data = BeautifulSoup(data_analytics, 'lxml')
+    soup_mkt = BeautifulSoup(marketing, 'html.parser')
+    soup_data = BeautifulSoup(data_analytics, 'html.parser')
+
+    # soup_mkt = BeautifulSoup(marketing, 'lxml')
+    # soup_data = BeautifulSoup(data_analytics, 'lxml')
 
     # 리스트 만들기
     name = []

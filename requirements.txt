@@ -3,6 +3,7 @@ datetime
 pandas
 numpy
 bs4
+lxml
 requests
 django-extensions
 django-debug-toolbar
