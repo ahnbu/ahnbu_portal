@@ -5,7 +5,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/boot_intro/custom.css' %}">
-  <link rel="stylesheet" href="static/css/boot_intro/custom.css">
+  {% comment %} <link rel="stylesheet" href="static/css/boot_intro/custom.css"> {% endcomment %}
 
 {% endblock %}
 
@@ -44,11 +44,12 @@
         </nav>
         <section class="container mt-5">
             <div class="text-center">
-                {% comment %} <img src="{% static 'img/boot_intro/profile.jpg' %}" height="20" alt="" class="img-fluid mb-3 rounded-circle mt-5"> {% endcomment %}
-                <img src="http://ahnbu.pythonanywhere.com/static/img/boot_intro/profile.jpg" height="20" alt="" class="img-fluid mb-3 rounded-circle mt-5">
+                <img src="{% static 'img/boot_intro/profile.jpg' %}" height="20" alt="" class="img-fluid mb-3 rounded-circle mt-5">
+                {% comment %} <img src="http://ahnbu.pythonanywhere.com/static/img/boot_intro/profile.jpg" height="20" alt="" class="img-fluid mb-3 rounded-circle mt-5"> {% endcomment %}
 
                 <h2>안병욱</h2>
-                <img src="../static/img/boot_intro/box.svg" alt="" class="img-fluid mr-1">프로그래머
+                {% comment %} <img src="../static/img/boot_intro/box.svg" alt="" class="img-fluid mr-1">프로그래머 {% endcomment %}
+                <img src="{% static 'img/boot_intro/box.svg' %}" alt="" class="img-fluid mr-1">프로그래머
                 <img src="{% static 'img/boot_intro/anchor.svg' %}" alt="" class="img-fluid mr-1">교육자
                 <img src="{% static 'img/boot_intro/book.svg' %}" alt="" id="career" class="img-fluid mr-1">작가
             </div>
