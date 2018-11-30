@@ -184,12 +184,13 @@ def sendmessage(to, text):
     import hashlib
 
     config = configparser.ConfigParser()
+    config.read('static/sms/config.ini')
+    # config.read('/static/sms/config.ini') 못찾음
 #    config.read('../static/sms/config.ini') 파일 못찾음
-    config.read('/static/sms/config.ini')
 
-    f = open('/static/sms/config.ini', 'r')
-    lines = f.readlines()
-    print(lines)
+    # f = open('/static/sms/config.ini', 'r')
+    # lines = f.readlines()
+    # print(lines)
 
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
