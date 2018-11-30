@@ -16,6 +16,13 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, date
 
+# 문자메시지 전송용 라이브러리
+import time
+import datetime
+import uuid
+import hmac
+import hashlib
+
 
 def index(request):
     if request.method == "POST":
@@ -43,13 +50,16 @@ def df_sql(df):
         # 아래 dsschool_price에서 dsschool 부분에 앱 이름이 들어가야 함
         df.to_sql('dsschool_price', con, if_exists='append', index=False)
         # result = {'message': "오늘은 이미 업데이트되었습니다."}
+        sendmessage('01033487728', '성공적으로 작동합니다.')
         result = ""
     else:  # 기존에 있으면, 오늘 꺼가 있으면 업데이트 안함
         price_date = Price.objects.first().update_date
         if price_date.date() < datetime.today().date():
             df.to_sql('dsschool_price', con, if_exists='append', index=False)
+            sendmessage('01033487728', '성공적으로 작동합니다.')
             result = ""
         else:
+            sendmessage('01033487728', '성공적으로 작동합니다.')
             result = "오늘은 이미 업데이트되었습니다."
     return result
 
@@ -145,6 +155,58 @@ def post(request):
         return render(request, 'dsschool/form.html', {'prices_list': prices_list})
 
         # 템플릿 파일 경로 지정, 데이터 전달
+
+
+# 문자 메시지 전송
+
+
+def unique_id():
+    return str(uuid.uuid1().hex)
+
+
+def get_iso_datetime():
+    utc_offset_sec = time.altzone if time.localtime().tm_isdst else time.timezone
+    utc_offset = datetime.timedelta(seconds=-utc_offset_sec)
+    return datetime.datetime.now().replace(tzinfo=datetime.timezone(offset=utc_offset)).isoformat()
+
+
+def get_signature(key, msg):
+    return hmac.new(key.encode(), msg.encode(), hashlib.sha256).hexdigest()
+
+
+def get_headers(apiKey, apiSecret):
+    date = get_iso_datetime()
+    salt = unique_id()
+    data = date + salt
+    return {'Authorization': 'HMAC-SHA256 ApiKey=' + apiKey + ', Date=' + date + ', salt=' + salt + ', signature=' +
+                             get_signature(apiSecret, data)}
+
+
+def sendmessage(to, text):
+    import requests
+    import configparser
+    # import auth
+    import json
+
+    config = configparser.ConfigParser()
+    config.read('./ahnbu_portal/static/sms/config.ini')
+
+    apiKey = config['AUTH']['ApiKey']
+    apiSecret = config['AUTH']['ApiSecret']
+
+    if __name__ == '__main__':
+        data = {
+            'message': {
+                'to': to,
+                'from': '01033487728',
+                'text': text,
+            }
+        }
+        res = requests.post(config['SERVER']['URI']+'send',
+                            headers=get_headers(apiKey, apiSecret), json=data)
+        print(json.loads(res.text))
+
+
 '''
 def index2(request):
     lottos = GuessNumbers.objects.all()
