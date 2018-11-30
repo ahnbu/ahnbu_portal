@@ -20,7 +20,7 @@ def index(request):
         df = dsschool()
         message = df_sql(df)
         prices_list = Price.objects.all()  # .order_by('-update_date')
-        sendmessage('01033487728', '성공적으로 작동합니다.')
+        # sendmessage('01033487728', '성공적으로 작동합니다.')
         return render(request, 'dsschool/index.html', {'prices_list': prices_list, 'message': message})
 #        return redirect('index')
         # "Save" 버튼을 누른 후에 결과 페이지.
@@ -152,16 +152,21 @@ def post(request):
 # 문자 메시지 전송
 
 def unique_id():
+    import uuid
     return str(uuid.uuid1().hex)
 
 
 def get_iso_datetime():
+    import time
+    import datetime
     utc_offset_sec = time.altzone if time.localtime().tm_isdst else time.timezone
     utc_offset = datetime.timedelta(seconds=-utc_offset_sec)
     return datetime.datetime.now().replace(tzinfo=datetime.timezone(offset=utc_offset)).isoformat()
 
 
 def get_signature(key, msg):
+    import hmac
+    import hashlib
     return hmac.new(key.encode(), msg.encode(), hashlib.sha256).hexdigest()
 
 
@@ -178,11 +183,6 @@ def sendmessage(to, text):
     import configparser
     # import auth
     import json
-    import time
-    import datetime
-    import uuid
-    import hmac
-    import hashlib
 
     config = configparser.ConfigParser()
     config.read('static/sms/config.ini')
