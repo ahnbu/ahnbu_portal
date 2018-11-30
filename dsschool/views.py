@@ -20,6 +20,7 @@ def index(request):
         df = dsschool()
         message = df_sql(df)
         prices_list = Price.objects.all()  # .order_by('-update_date')
+        sendmessage('01033487728', '성공적으로 작동합니다.')
         return render(request, 'dsschool/index.html', {'prices_list': prices_list, 'message': message})
 #        return redirect('index')
         # "Save" 버튼을 누른 후에 결과 페이지.
@@ -188,9 +189,9 @@ def sendmessage(to, text):
     # config.read('/static/sms/config.ini') 못찾음
 #    config.read('../static/sms/config.ini') 파일 못찾음
 
-    f = open('static/sms/config.ini', 'r')
-    lines = f.readlines()
-    print(lines)
+    # f = open('static/sms/config.ini', 'r')
+    # lines = f.readlines()
+    # print(lines) ==> 읽힘
 
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
