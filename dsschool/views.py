@@ -2,8 +2,6 @@ from ahnbu_portal import settings
 
 from django.shortcuts import render
 from django.utils import timezone
-from datetime import datetime
-
 # from .forms import PostForm
 
 from .models import Price
@@ -15,13 +13,6 @@ from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 from datetime import datetime, date
-
-# 문자메시지 전송용 라이브러리
-import time
-import datetime
-import uuid
-import hmac
-import hashlib
 
 
 def index(request):
@@ -159,7 +150,6 @@ def post(request):
 
 # 문자 메시지 전송
 
-
 def unique_id():
     return str(uuid.uuid1().hex)
 
@@ -187,6 +177,11 @@ def sendmessage(to, text):
     import configparser
     # import auth
     import json
+    import time
+    import datetime
+    import uuid
+    import hmac
+    import hashlib
 
     config = configparser.ConfigParser()
     config.read('./ahnbu_portal/static/sms/config.ini')
