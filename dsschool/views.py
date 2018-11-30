@@ -186,6 +186,10 @@ def sendmessage(to, text):
     config = configparser.ConfigParser()
     config.read('../static/sms/config.ini')
 
+    f = open('../static/sms/config.ini', 'r')
+    lines = f.readlines()
+    print(lines)
+
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
 
