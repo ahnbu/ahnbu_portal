@@ -196,6 +196,8 @@ def sendmessage(to, text):
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
 
+    print("sendmessage가 보내지는지 체크", __name__)
+
     if __name__ == '__main__':
         data = {
             'message': {
