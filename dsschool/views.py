@@ -184,7 +184,7 @@ def sendmessage(to, text):
     import hashlib
 
     config = configparser.ConfigParser()
-    config.read('./ahnbu_portal/static/sms/config.ini')
+    config.read('../static/sms/config.ini')
 
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
