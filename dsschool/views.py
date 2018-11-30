@@ -196,19 +196,19 @@ def sendmessage(to, text):
     apiKey = config['AUTH']['ApiKey']
     apiSecret = config['AUTH']['ApiSecret']
 
-    print("sendmessage가 보내지는지 체크", __name__)
+    # print("sendmessage가 보내지는지 체크", __name__) => 이렇게 하면, dsschool.views 라고 나옴
 
-    if __name__ == '__main__':
-        data = {
-            'message': {
-                'to': to,
-                'from': '01033487728',
-                'text': text,
-            }
+    # if __name__ == '__main__':
+    data = {
+        'message': {
+            'to': to,
+            'from': '01033487728',
+            'text': text,
         }
-        res = requests.post(config['SERVER']['URI']+'send',
-                            headers=get_headers(apiKey, apiSecret), json=data)
-        print(json.loads(res.text))
+    }
+    res = requests.post(config['SERVER']['URI']+'send',
+                        headers=get_headers(apiKey, apiSecret), json=data)
+    print(json.loads(res.text))
 
 
 '''
